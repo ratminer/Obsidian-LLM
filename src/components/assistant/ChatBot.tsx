@@ -1,8 +1,7 @@
-import { LlmConnection } from "./LlmConnection";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { Button } from "../common/Button";
 import { TextAreaInput } from "../common/TextArea";
-import React, { useEffect, useRef, useState } from "react";
 import { ChatWindow } from "./ChatWindow";
 import { BaseMessage, HumanMessage, SystemMessage } from "@langchain/core/messages";
 import { Assistant } from "./ChatWindowManager";

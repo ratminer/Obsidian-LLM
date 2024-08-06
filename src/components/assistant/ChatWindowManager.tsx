@@ -1,3 +1,4 @@
+import React from 'react'
 import styled from "styled-components";
 import { Colors } from "../common/Constants";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
@@ -51,7 +52,6 @@ export const ChatWindowManager: React.FC = () => {
     }
 
     function updateMessageHistory(id: number, messages: BaseMessage[]) {
-        console.log(messages)
         setAssistant((prevAssistants) =>
             prevAssistants.map((assistant) =>
                 assistant.id === id ? { ...assistant, messageHistory: messages } : assistant
