@@ -40,13 +40,13 @@ interface Llm {
     connection: LlmConnection
 }
 
-export const ChatWindowManager: React.FC = () => {
+export const ChatWindowManager: React.FC<{ config: any }> = ({ config }) => {
     const [selectedIndex, setSelectedIndex] = useState(0)
     const [nextId, setNextId] = useState(1)
     const [assistants, setAssistant] = useState<Assistant[]>([])
 
     function addChatWindow() {
-        setAssistant([...assistants, {id: nextId, connection: new LlmConnection(), messageHistory: []}])
+        setAssistant([...assistants, {id: nextId, connection: new LlmConnection(config), messageHistory: []}])
         setNextId(nextId + 1)
         setSelectedIndex(assistants.length)
     }

@@ -12,18 +12,9 @@ export class LlmConnection {
     public prompt: string = "";
     public messageHistory: ChatMessageHistory
 
-    constructor() {
-        let params = {
-            model: 'llama3.1',
-            baseUrl: 'http://node-8:11434',
-            options: {
-                use_mmap: true,
-                num_thread: 6,
-                num_gpu: 6
-            }
-        }
+    constructor(config: any) {
 
-        this.llm = new Ollama(params)
+        this.llm = new Ollama(config.llmConnection)
 
         const chatPrompt = ChatPromptTemplate.fromMessages([
             [

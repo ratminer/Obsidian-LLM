@@ -5,9 +5,11 @@ import { ChatWindowManager } from "../components/assistant/ChatWindowManager";
 
 export class JournalChat extends ItemView {
     root: Root | null = null
+    config: null
 
-    constructor(leaf: WorkspaceLeaf) {
+    constructor(config: any, leaf: WorkspaceLeaf) {
         super(leaf);
+        this.config = config
     }
 
     getViewType(): string {
@@ -22,7 +24,7 @@ export class JournalChat extends ItemView {
         this.root = createRoot(this.containerEl.children[1])
         this.root.render(
             <AppContext.Provider value={this.app}>
-                <ChatWindowManager/>
+                <ChatWindowManager config={this.config}/>
             </AppContext.Provider>
         )
     }
@@ -32,7 +34,7 @@ export class JournalChat extends ItemView {
     }
 
     static async activate(app: App) {
-        const {workspace} = app
+        const { workspace} = app
         let leaf: WorkspaceLeaf | null = null
 
         const leaves = workspace.getLeavesOfType(VIEW_TYPE_JOURNAL_CHAT)
