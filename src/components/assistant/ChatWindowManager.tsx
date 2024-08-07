@@ -82,7 +82,6 @@ export const ChatWindowManager: React.FC<{ config: any }> = ({ config }) => {
                     {assistants.map((assistant) => (
                         <TabPanel key={assistant.id}>
                             <ChatBot
-                                key={assistant.id}
                                 assistant={assistant}
                                 chatLog={assistant.messageHistory}
                                 updateMessageHistory={updateMessageHistory}

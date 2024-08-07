@@ -19,8 +19,7 @@ export class LlmConnection {
         const chatPrompt = ChatPromptTemplate.fromMessages([
             [
                 "system",
-                `{prompt}                
-                `
+                `{prompt}`
             ],
             new MessagesPlaceholder("messages")
         ])

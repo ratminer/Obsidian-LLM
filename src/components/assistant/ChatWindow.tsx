@@ -15,32 +15,40 @@ const ChatWindowContainer = styled.div`
     padding: 10px;
     overflow-y: auto;
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
 `
 
-const alignment = (type: string) => {
-    switch (type) {
-        case 'human':
-            return 'flex-end';
-        case 'ai':
-            return 'flex-start';
-        default:
-            return 'center';
+const MessageContainer = styled.div`
+    & {
+        border: 1px solid ${Colors.BORDER_COLOR};
+
+        border-radius: 10px;
+        padding: 5px;
+        margin-bottom: 5px;
+        background-color: ${Colors.MESSAGES_COLOR};
+        max-width: 60%;
+        word-wrap: break-word;
+        user-select: text;
+        font-size: small;
     }
-}
-
-const MessageContainer = styled.div<{ type: string }>`
-    border: 1px solid ${Colors.BORDER_COLOR};
-    border-radius: 10px;
-    padding: 5px;
-    margin-bottom: 5px;
-    background-color: ${Colors.MESSAGES_COLOR};
-    align-self: ${props => alignment(props.type)};
-    max-width: 60%;
-    word-wrap: break-word;
-    user-select: text;
-    font-size: small;
 `
+
+const AiMessage = styled(MessageContainer)`
+    align-self: flex-start;
+    border-bottom-left-radius: 0;
+    &:before {
+        content: 'rnadom - content';
+    }
+`
+const HumanMessage = styled(MessageContainer)`
+    align-self: flex-end;
+    border-bottom-right-radius: 0;
+    
+`
+const SystemMessage = styled(MessageContainer)`
+    align-self: center;
+`
+
 
 export const ChatWindow: React.FC<ChatWindowProps> = ({messages}) => {
 
@@ -54,11 +62,18 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({messages}) => {
 
     return (
         <ChatWindowContainer ref={chatWindowRef}>
-            {messages.map((msg, index) => (
-                <MessageContainer key={index} type={msg._getType()}>
-                    <ReactMarkdown remarkPlugins={[remarkGfm]}>{msg.content.toString()}</ReactMarkdown>
-                </MessageContainer>
-            ))}
+            {messages.slice().reverse().map((msg, index) => {
+                const content = <ReactMarkdown remarkPlugins={[remarkGfm]}>{msg.content.toString()}</ReactMarkdown>
+                switch(msg._getType()) {
+                    case 'ai':
+                        return <AiMessage key={index}>{content}</AiMessage>
+                    case "human":
+                        return <HumanMessage key={index}>{content}</HumanMessage>
+                    case "system":
+                    default:
+                        return <SystemMessage key={index}>{content}</SystemMessage>
+                }
+            })}
         </ChatWindowContainer>
     )
 }

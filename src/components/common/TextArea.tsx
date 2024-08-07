@@ -52,7 +52,7 @@ export const TextAreaInput: React.FC<TextAreaProps> = ({ onSetValue, placeholder
         }
     }
 
-    function handleKeyDown(e: React.KeyboardEvent) {
+    function handleKeyUp(e: React.KeyboardEvent) {
         if (e.key === 'Enter' && !e.shiftKey) {
             handleSubmit()
             if (resetOnEnter)
@@ -66,7 +66,7 @@ export const TextAreaInput: React.FC<TextAreaProps> = ({ onSetValue, placeholder
                 value={value}
                 onChange={(e) => setValue(e.target.value)}
                 placeholder={placeholder}
-                onKeyDown={handleKeyDown}
+                onKeyUp={handleKeyUp}
                 rows={4}
             />
             <Button onClick={handleSubmit}>{children}</Button>
