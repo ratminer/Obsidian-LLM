@@ -35,10 +35,7 @@ const MessageContainer = styled.div`
 
 const AiMessage = styled(MessageContainer)`
     align-self: flex-start;
-    border-bottom-left-radius: 0;
-    &:before {
-        content: 'rnadom - content';
-    }
+    border-bottom-left-radius: 0;    
 `
 const HumanMessage = styled(MessageContainer)`
     align-self: flex-end;

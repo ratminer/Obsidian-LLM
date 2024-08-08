@@ -14,7 +14,7 @@ export class LlmConnection {
 
     constructor(config: any) {
 
-        this.llm = new Ollama(config.llmConnection)
+        this.llm = new Ollama(config)
 
         const chatPrompt = ChatPromptTemplate.fromMessages([
             [
