@@ -10,23 +10,22 @@ import { BaseMessage } from "@langchain/core/messages";
 
 const Container = styled.div`
     display: flex;
-    flex-wrap: wrap;
     gap: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 10px;    
 `
 
 const SideBar = styled.div`
     display: flex;
     flex-direction: column;
     padding: 10px;
-    width: 200px;
     border-right: 1px solid ${Colors.BORDER_COLOR};
 `
 
 const Content = styled.div`
-    flex: 1;
     display: flex;
+    flex: 1;
     flex-direction: column;
+    max-width: 75%;
 `
 
 export interface Assistant {

@@ -4,6 +4,9 @@ import { zodToJsonSchema } from "zod-to-json-schema";
 import { z } from "zod";
 import { ChatPromptTemplate } from "@langchain/core/prompts";
 import { JsonOutputFunctionsParser } from "langchain/output_parsers";
+import { ChatOllama } from "@langchain/ollama";
+import { tool } from "@langchain/core/tools";
+import { Editor } from "obsidian";
 
 const SYSTEM_PROMPT_TEMPLATE = `
 You are an expert extraction algorithm.
