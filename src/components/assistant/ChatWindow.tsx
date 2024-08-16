@@ -10,12 +10,11 @@ interface ChatWindowProps {
 }
 
 const ChatWindowContainer = styled.div`
-    flex: 1;
     border: 1px solid ${Colors.BORDER_COLOR};
     padding: 10px;
-    
+    flex: 1;
     display: flex;
-    overflow-x: scroll;
+    overflow-y: scroll;
     flex-direction: column-reverse;
 `
 
@@ -34,7 +33,12 @@ const MessageContainer = styled.div`
     user-select: text;
     font-size: small;
     
-    overflow-x: scroll;    
+    pre {
+        border: 1px solid ${Colors.BORDER_COLOR};
+        background-color: ${Colors.CODE_COLOR};
+        padding: 5px;
+        overflow-x: scroll;
+    }
 `
 
 const AiMessage = styled(MessageContainer)`

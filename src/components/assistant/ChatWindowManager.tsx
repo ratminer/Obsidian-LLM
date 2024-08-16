@@ -25,6 +25,7 @@ const Content = styled.div`
     display: flex;
     flex: 1;
     flex-direction: column;
+    overflow-y: scroll;
     max-width: 75%;
 `
 
